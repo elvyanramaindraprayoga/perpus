@@ -26,9 +26,14 @@
                 {{ $book->boleh_dipinjam ? 'Boleh Dipinjam' : 'Tidak Bisa Dipinjam' }}
             </p>
             @if($book->boleh_dipinjam)
-            <a href="{{ route('user.pinjam', $book->id) }}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 mt-4 inline-block">
-                Pinjam Buku
-            </a>
+            <a href="{{ route('user.pinjam', $book->id) }}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 mt-4 inline-flex items-center gap-2">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+    </svg>
+    Pinjam Buku
+</a>
+
             @endif
         </div>
         @empty

@@ -13,11 +13,10 @@ class CekRole
      */
     public function handle(Request $request, Closure $next, $role)
     {
-        if (Auth::check() && Auth::user()->role === $role) {
+        if (auth()->check() && auth()->user()->role === 'admin') {
             return $next($request);
         }
 
-        // Jika bukan role yang sesuai, arahkan kembali ke halaman utama
-        return redirect('/');
+        abort(403, 'Akses hanya untuk admin.');
     }
 }

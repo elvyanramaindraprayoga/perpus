@@ -46,7 +46,10 @@ Route::middleware(['auth', CekRole::class . ':user'])->group(function () {
         return view('user.dashboard');
     })->name('user.dashboard');
 
-    Route::get('/user/katalog', [BookController::class, 'katalog'])->name('user.katalog');
+    Route::get('/user/katalog', [BookController::class, 'katalog'])
+    ->middleware(['auth', 'cekrole:admin']) // Hanya admin yang boleh akses
+    ->name('user.katalog');
+
     Route::get('/user/katalog/pinjam/{id}', [BookController::class, 'pinjam'])->name('user.pinjam');
     
 });
