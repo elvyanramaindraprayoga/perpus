@@ -30,8 +30,8 @@ Route::middleware(['auth', CekRole::class . ':admin'])->group(function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
-    Route::get('/admin/buku', [BookController::class, 'index'])->name('buku.index');
-    Route::get('/admin/buku/create', [BookController::class, 'create'])->name('buku.create');
+    Route::get('/admin/buku', [BookController::class, 'index'])->name('admin.buku');
+    Route::get('/admin/buku/create', [BookController::class, 'create'])->name('buku.create'); // Route untuk Tambah Buku
     Route::post('/admin/buku', [BookController::class, 'store'])->name('buku.store');
 
     Route::get('/admin/peminjaman', [BookController::class, 'peminjaman'])->name('admin.peminjaman');

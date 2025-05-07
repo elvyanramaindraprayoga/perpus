@@ -18,7 +18,7 @@ class BookController extends Controller
 
     public function create()
     {
-        return view('admin.buku.create');
+        return view('admin.buku.create'); // Pastikan file view ini ada
     }
     
     public function store(Request $request)
