@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Peminjaman;
 use pdf;
 
@@ -110,20 +111,53 @@ class BookController extends Controller
         
     }
 
-    public function edit(Book $book)
-    {
-        
+    public function edit($id)
+{
+    $book = Book::findOrFail($id);
+    return view('admin.edit_buku', compact('book'));
+}
+
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'judul' => 'required',
+        'penulis' => 'required',
+        'tahun_terbit' => 'required|numeric',
+        'boleh_dipinjam' => 'required|boolean',
+        'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+    ]);
+
+    $book = Book::findOrFail($id);
+    $data = $request->all();
+
+    // Jika ada gambar baru, hapus gambar lama dan simpan yang baru
+    if ($request->hasFile('gambar')) {
+        if ($book->gambar) {
+            \Storage::disk('public')->delete($book->gambar);
+        }
+        $data['gambar'] = $request->file('gambar')->store('buku', 'public');
     }
 
-    public function update(Request $request, Book $book)
-    {
-        
+    $book->update($data);
+
+    return redirect()->route('admin.buku')->with('success', 'Buku berhasil diperbarui!');
+}
+
+
+    public function destroy($id)
+{
+    $book = Book::findOrFail($id);
+
+    // Hapus gambar dari storage jika ada
+    if ($book->gambar && Storage::disk('public')->exists($book->gambar)) {
+        Storage::disk('public')->delete($book->gambar);
     }
 
-    public function destroy(Book $book)
-    {
-        
-    }
+    // Hapus data buku dari database
+    $book->delete();
+
+    return redirect()->route('admin.buku')->with('success', 'Buku berhasil dihapus.');
+}
 
     
 }
