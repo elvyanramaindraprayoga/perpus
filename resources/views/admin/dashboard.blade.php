@@ -20,6 +20,14 @@
                        class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-2 rounded-md transition duration-200 ease-in-out">
                         ➕ Tambah Buku
                     </a>
+                    <a href="{{ route('buku.create') }}"
+                       class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-2 rounded-md transition duration-200 ease-in-out">
+                        ✏️ Edit Buku
+                    </a>
+                    <a href="{{ route('buku.create') }}"
+                       class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-2 rounded-md transition duration-200 ease-in-out">
+                        🗑️ Hapus Buku
+                    </a> 
                 </div>
             </div>
         </div>

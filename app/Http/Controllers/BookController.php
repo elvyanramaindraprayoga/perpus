@@ -114,7 +114,7 @@ class BookController extends Controller
     public function edit($id)
 {
     $book = Book::findOrFail($id);
-    return view('admin.edit_buku', compact('book'));
+    return view('admin.editbuku', compact('book'));
 }
 
 public function update(Request $request, $id)
@@ -140,7 +140,7 @@ public function update(Request $request, $id)
 
     $book->update($data);
 
-    return redirect()->route('admin.buku')->with('success', 'Buku berhasil diperbarui!');
+    return redirect()->route('adminbuku')->with('success', 'Buku berhasil diperbarui!');
 }
 
 
@@ -148,12 +148,12 @@ public function update(Request $request, $id)
 {
     $book = Book::findOrFail($id);
 
-    // Hapus gambar dari storage jika ada
+    
     if ($book->gambar && Storage::disk('public')->exists($book->gambar)) {
         Storage::disk('public')->delete($book->gambar);
     }
 
-    // Hapus data buku dari database
+
     $book->delete();
 
     return redirect()->route('admin.buku')->with('success', 'Buku berhasil dihapus.');

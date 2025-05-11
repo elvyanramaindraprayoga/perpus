@@ -23,11 +23,11 @@
             <select name="boleh_dipinjam" class="w-full bg-gray-800 border border-gray-700 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <option value="1">Ya</option>
                 <option value="0">Tidak</option>
-            </select>
+            </select> 
         </div>
 
         <div class="text-center">
-            <button type="submit" class="bg-blue-600 hover:bg-blue-700 transition duration-300 px-6 py-3 rounded-lg text-white font-medium">
+            <button type="submit" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-2 rounded-md transition duration-200 ease-in-out">
                 💾 Simpan Buku
             </button>
         </div>

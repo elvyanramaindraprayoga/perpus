@@ -40,9 +40,6 @@ Route::middleware(['auth', CekRole::class . ':admin'])->group(function () {
     Route::get('/admin/peminjaman', [BookController::class, 'peminjaman'])->name('admin.peminjaman');
     Route::get('/admin/peminjaman/kembalikan/{id}', [BookController::class, 'kembalikan'])->name('admin.kembalikan');
     Route::get('/admin/peminjaman/export-pdf', [BookController::class, 'exportPdf'])->name('admin.peminjaman.pdf');
-
-    // Pindahkan ke sini, karena ini juga untuk admin
-    Route::get('/user/katalog', [BookController::class, 'katalog'])->name('user.katalog');
 });
 
 // ============ USER ROUTES ============ 
@@ -51,6 +48,6 @@ Route::middleware(['auth', CekRole::class . ':user'])->group(function () {
         return view('user.dashboard');
     })->name('user.dashboard');
 
+    Route::get('/user/katalog', [BookController::class, 'katalog'])->name('user.katalog'); // Pindahkan ke sini, untuk user
     Route::get('/user/katalog/pinjam/{id}', [BookController::class, 'pinjam'])->name('user.pinjam');
 });
-

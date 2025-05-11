@@ -8,20 +8,17 @@ use Illuminate\Http\Request;
 
 class CekRole
 {
-    /**
-     * Handle an incoming request.
-     */
+    
     public function handle(Request $request, Closure $next, $role)
     {
-        // Cek apakah user sudah login
+        
         if (auth()->check()) {
-            // Cek apakah role user sesuai dengan role yang diminta
+            
             if (auth()->user()->role === $role) {
-                return $next($request);
+                return $next($request);  
             }
         }
 
-        // Jika tidak sesuai, tampilkan error
-        abort(403, 'Akses ditolak.');
+        return redirect()->route('dashboard')->with('error', 'Akses ditolak. Anda tidak memiliki izin untuk mengakses halaman ini.');
     }
 }
